@@ -1,35 +1,35 @@
 var app = {
   startCamera: function(){
-    CameraPreview.startCamera();
+    cordova.plugins.camerapreview.startCamera({x: 0, y: 0});
   },
 
   startCameraAnotherPos: function(){
-    CameraPreview.startCamera({x: 50, y: 100, width: 300, height:300, camera: "back", tapPhoto: true, previewDrag: true, toBack: false});
+    cordova.plugins.camerapreview.startCamera({x: 50, y: 100, width: 300, height:300, camera: "back", tapPhoto: true, previewDrag: true, toBack: false});
   },
 
   stopCamera: function(){
-    CameraPreview.stopCamera();
+    cordova.plugins.camerapreview.stopCamera();
   },
 
   takePicture: function(){
-    CameraPreview.takePicture({maxWidth: window.device.width, maxHeight: window.device.height});
+    cordova.plugins.camerapreview.takePicture({maxWidth: window.device.width, maxHeight: window.device.height});
   },
 
   switchCamera: function(){
-    CameraPreview.switchCamera();
+    cordova.plugins.camerapreview.switchCamera();
   },
 
   show: function(){
-    CameraPreview.show();
+    cordova.plugins.camerapreview.show();
   },
 
   hide: function(){
-    CameraPreview.hide();
+    cordova.plugins.camerapreview.hide();
   },
 
   colorEffectChanged: function(){
     var effect = document.getElementById('colorEffectCombo').value;
-    CameraPreview.setColorEffect(effect);
+    cordova.plugins.camerapreview.setColorEffect(effect);
   },
 
   init: function(){
