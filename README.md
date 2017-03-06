@@ -26,6 +26,14 @@ cordova platform add ios
 cordova build ios
 ```
 
+##Dependencies
+
+needs to install
+```
+cordova plugin add cordova-plugin-device
+```
+To allow the app to detect the device in order for the zoom to work, image size etc...
+
 ## IOS Quirks
 
 It is not possible to use your computers webcam during testing in the simulator, you must device test
