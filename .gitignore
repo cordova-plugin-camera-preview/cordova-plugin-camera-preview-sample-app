@@ -1,25 +1,119 @@
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-*.cab
-*.msi
-*.msm
-*.msp
-*.lnk
+# Cordova Global
+plugins/
+platforms/
+
+# iOS Platform
+# platforms/ios/build/
+# platforms/ios/www/
+# platforms/ios/cordova/console.log
+*.xcuserdatad
+
+# Android Platform
+# platforms/android/.gradle
+# platforms/android/build
+# platforms/android/assets/www
+# platforms/android/local.properties
+# platforms/android/CordovaLib/build
+# platforms/android/CordovaLib/gen
+# platforms/android/CordovaLib/local.properties
+
+# wp8
+# platforms/wp8/bin
+# platforms/wp8/obj
+# platforms/wp8/www
+# platforms/wp8/.staging
+# platforms/wp8/*.suo
+# platforms/wp8/*.csproj.user
+
+# Windows Universal App (Windows Platform)
+# platforms/windows/build
+# platforms/windows/www
+# platforms/windows/AppPackages
+
+# Browser
+# platforms/browser/www
+
+# res
+resources/signing
+
+# Node JS + TS
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pids
+*.pid
+*.seed
+*.pid.lock
+lib-cov
+coverage
+.nyc_output
+.grunt
+bower_components
+.lock-wscript
+build/Release
+dist/
+node_modules/
+jspm_packages/
+typings/
+.npm
+.eslintcache
+.node_repl_history
+*.tgz
+.yarn-integrity
+.env
+.env.test
+.cache
+.next
+.nuxt
+.vuepress/dist
+.serverless/
+.fusebox/
+.dynamodb/
+
+# Mac
 .DS_Store
 .AppleDouble
 .LSOverride
-._*
+.DocumentRevisions-V100
+.fseventsd
 .Spotlight-V100
+.TemporaryItems
 .Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
 .AppleDB
 .AppleDesktop
-Network Trash Folder
-Temporary Items
 .apdisk
-ant-build
-build
-platforms/
-plugins/
-hooks/
+
+# Windows
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Created by https://www.gitignore.io/api/linux
+# Edit at https://www.gitignore.io/?templates=linux
+
+### Linux ###
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
+# End of https://www.gitignore.io/api/linux
+
+package.json
+package-lock.json
