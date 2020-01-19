@@ -23,3 +23,6 @@ build
 platforms/
 plugins/
 hooks/
+node_modules/
+package.json
+package-lock.json
