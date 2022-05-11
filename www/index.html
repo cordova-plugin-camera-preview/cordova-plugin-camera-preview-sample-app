@@ -1,73 +1,121 @@
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-    <title>cordova-plugin-camera-preview Sample App</title>
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-  </head>
-  <body>
-    <div class="controls">
-      <div class="block">
-        <button id="startCameraAboveButton">Start Camera Above HTML</button>
-        <button id="stopCameraButton">Stop Camera</button>
-      </div>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<script src="js/jquery-3.6.0.min.js"></script>
+		<title>Camera Preview Demo</title>
+	</head>
 
-      <div class="block">
-        <p style="margin-top:0px"><button id="startCameraBelowButton">Start Camera Behind HTML</button></p>
+	<body>
+		<div class="content">
+			<fieldset>
+				<legend>Methods</legend>
+				<button id="btnStartCamera">startCamera</button>
+				<button id="btnStopCamera">stopCamera</button>
+				<button id="btnSwitchCamera">switchCamera</button>
+				<hr />
+				<button id="btnTakePicture">takePicture</button>
+				<button id="btnTakeSnapshot">takeSnapshot</button>
+				<button id="btnHide">Hide</button>
+				<button id="btnShow">Show</button>
+				<hr />
+				<button id="btnSetPreviewSize">setPreviewSize</button>
+				<input type="number" id="cpsWidth" placeholder="width" value="" />
+				<input type="number" id="cpsHeight" placeholder="height" value="" />
+			</fieldset>
 
-        <p style="margin-bottom:0px">
-          Color Effect:
-          <select id="selectColorEffect">
-            <option selected value="none">none</option>
-            <option value="aqua">aqua</option>
-            <option value="blackboard">blackboard</option>
-            <option value="mono">mono</option>
-            <option value="negative">negative</option>
-            <option value="posterize">posterize</option>
-            <option value="sepia">sepia</option>
-            <option value="solarize">solarize</option>
-            <option value="whiteboard">whiteboard</option>
-          </select>
-        </p>
+			<fieldset>
+				<legend>Camera Preview Options</legend>
+				X <input type="number" id="txtCameraX" placeholder="x" value="20" />
+				Y <input type="number" id="txtCameraY" placeholder="y" value="20" />
+				W <input type="number" id="txtCameraWidth" placeholder="width" value="" />
+				H <input type="number" id="txtCameraHeight" placeholder="height" value="" />
+				<select id="optCameraDirection">
+					<option value="back">Back camera</option>
+					<option value="front">Front camera</option>
+				</select>
+				<select id="optToBack">
+					<option value="true">toBack ON</option>
+					<option value="false">toBack OFF</option>
+				</select>
+				<select id="optPreviewDrag">
+					<option value="true">previewDrag ON</option>
+					<option value="false">previewDrag OFF</option>
+				</select>
+			</fieldset>
 
-        <p style="margin-bottom:0px;">
-          Flash Mode:
-          <select id="selectFlashMode">
-            <option selected value="off">off</option>
-            <option value="on">on</option>
-            <option value="auto">auto</option>
-            <option value="torch">torch</option>
-          </select>
-        </p>
+			<fieldset>
+				<legend>Status</legend>
+				<label id="status"></label>
+			</fieldset>
 
-        <div id="androidOnly">
-          <p style="margin-bottom:0px;">
-            Zoom:
-            <span id="zoomValue"style="margin: 0 5px;">1</span>
-            <input type="range" id="zoomSlider" min="1" max="5" value="1" />
-          </p>
-        </div>
-      </div>
-      <div class="block">
-        <button id="takePictureButton">Take Picture</button>
-        <button id="switchCameraButton">Switch Camera</button>
-        <button id="changePreviewSize">Change Preview Size</button>
-      </div>
-      <div class="block">
-        <button id="hideButton">Hide</button>
-        <button id="showButton">Show</button>
-      </div>
-      <div class="block">
-        <button id="showSupportedPictureSizes">Supported Picture Sizes</button>
-      </div>
-    </div>
+			<fieldset>
+				<legend>Camera Settings</legend>
+				<button id="btnGetSupportedPictureSizes">getSupportedPictureSizes</button>
+				<select id="pictureSizes" disabled="disabled">
+					<option value="0x0">...</option>
+				</select>
+				<hr />
+				<button id="btnGetSupportedFlashModes">getSupportedFlashModes</button>
+				<select id="flashModes" disabled="disabled">
+					<option value="">...</option>
+				</select>
+				<hr />
+				<button id="btnGetSupportedFocusModes">getSupportedFocusModes</button>
+				<select id="focusModes" disabled="disabled">
+					<option value="">...</option>
+				</select>
+				<hr />
+				<button id="btnGetSupportedColorEffects">getSupportedColorEffects</button>
+				<select id="colorEffects" disabled="disabled">
+					<option value="">...</option>
+				</select>
+				<hr />
+				<button id="btnGetMaxZoom">getMaxZoom</button>
+				<select id="zoomSlider" disabled="disabled">
+					<option value="zoom">...</option>
+				</select>
+			</fieldset>
 
-    <div class="pictures">
-      <p><img id="originalPicture" width="200"/></p>
-    </div>
+			<fieldset>
+				<legend>Pictures</legend>
+				<label>Plugin-taken picture</label>
+				<img src="" alt="" id="originalPicture" style="max-width: 50%" />
+				<label id="originalSize">dimensions</label>
+				<hr />
+				<label>App-cropped picture:</label>
+				<img src="" alt="" id="croppedPicture" style="max-width: 50%" />
+				<label id="croppedSize">dimensions</label>
+			</fieldset>
 
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="CameraPreview.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-  </body>
+			<fieldset id="versions">
+				<legend>Versions</legend>
+				<img alt="" class="info" src="img/outline_info_black_36dp.png" />
+				<label id="app_version" class="blue">App version</label>
+				<label id="plugin_version" class="blue">Plugin version</label>
+			</fieldset>
+
+			<fieldset>
+				<legend>About Plugin</legend>
+				<label>Refer to README for details.</label>
+				<hr />
+				<button type="button" id="btnGitHub">GitHub</button>
+			</fieldset>
+
+			<fieldset>
+				<legend>About Demo App</legend>
+				<label>Visit website for demo app reference.</label>
+				<hr />
+				<button type="button" id="btnWebsite">Website</button>
+				<button type="button" id="btnPluginDemos">Plugin Demos</button>
+			</fieldset>
+		</div>
+
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+	</body>
 </html>
